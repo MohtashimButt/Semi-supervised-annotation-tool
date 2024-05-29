@@ -1,0 +1,8 @@
+os
+opencv-python
+json
+numpy
+base64
+PIL
+torch
+torchvision
