@@ -5,6 +5,10 @@ You can download the weights (`deeplabv3_small_ubaid.pth`) from here: https://pe
 ## Things you need to have
 ### Labelme
 - Use `pip install labelme` to install LabelMe in your PC.
+- Use the following command once you clone the repository:
+```
+pip install -r requirements.txt
+```
 
 
 ## HOW TO USE IT
