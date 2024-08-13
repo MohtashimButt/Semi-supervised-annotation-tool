@@ -23,16 +23,23 @@ def get_inference(input_dir):
     ])
 
     # Load pre-trained DeepLabv3+ model
-    model = models.segmentation.deeplabv3_resnet50(weights=models.segmentation.DeepLabV3_ResNet50_Weights.DEFAULT)
+    # model = models.segmentation.deeplabv3_resnet50(weights=models.segmentation.DeepLabV3_ResNet50_Weights.DEFAULT)
+    model = models.segmentation.lraspp_mobilenet_v3_large(weights=models.segmentation.LRASPP_MobileNet_V3_Large_Weights.DEFAULT)
 
-    # Modify last layer for binary segmentation
-    num_classes = 1
-    model.classifier[4] = nn.Sequential(
-        nn.Conv2d(256, num_classes, kernel_size=(1, 1), stride=(1, 1)),
-        nn.Sigmoid())
+    # # Modify last layer for binary segmentation
+    # num_classes = 1
+    # model.classifier[4] = nn.Sequential(
+    #     nn.Conv2d(256, num_classes, kernel_size=(1, 1), stride=(1, 1)),
+    #     nn.Sigmoid())
+    model.classifier.low_classifier = nn.Conv2d(40, 1, 1, 1)
+    model.classifier.high_classifier = nn.Sequential(
+        nn.Conv2d(128, 1, 1, 1),
+        nn.Sigmoid()
+    )
 
     # Load model on CPU
-    model.load_state_dict(torch.load("deeplabv3_small_ubaid.pth", map_location=torch.device('cpu')))
+    # model.load_state_dict(torch.load("deeplabv3_small_ubaid.pth", map_location=torch.device('cpu')))
+    model.load_state_dict(torch.load("lrs_expfocal_best_val_loss.pth", map_location=torch.device('cpu')))
 
 
     for filename in os.listdir(input_dir):

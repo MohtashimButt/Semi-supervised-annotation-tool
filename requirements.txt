@@ -6,3 +6,7 @@ base64
 PIL
 torch
 torchvision
+
+annotation
+and the image canvases
+image url as id in json
