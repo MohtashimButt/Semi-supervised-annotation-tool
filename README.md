@@ -27,7 +27,7 @@ After running `main.py`, you'll get following things:
 Now, you may open labelme with `Images` as the current working folder and `JSONS` as the Output or destination folder to correct the labels.
 
 ### Files description
-- `unLabelToLabel`: It resized the cropped images to `512x512`
+- `unLabelToLabel`: It resized the cropped images to `520x520`
 - `cropFromBbox.py`: It gets the crops out of the bboxes we made.
 - `model.py`: It generates the masks from the cropped images.
 - `masktojson.py`: It generates the json files of the masks that are created by our model.
